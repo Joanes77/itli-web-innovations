@@ -21,12 +21,20 @@ export const MarketingSection = () => {
 
       overlayEl.style.setProperty("--opacity", "1");
       overlayEl.style.setProperty("--x", `${x}px`);
-      overlayEl.style.setProperty("--y", `${y}px}`);
+      overlayEl.style.setProperty("--y", `${y}px`);
     };
 
     const removeOverlayMask = () => {
       const overlayEl = overlay as HTMLElement;
       overlayEl.style.setProperty("--opacity", "0");
+    };
+
+    const createOverlayCta = (overlayCard: HTMLElement, ctaEl: Element) => {
+      const overlayCta = document.createElement("div");
+      overlayCta.classList.add("cta");
+      overlayCta.textContent = ctaEl.textContent;
+      overlayCta.setAttribute("aria-hidden", "true");
+      overlayCard.append(overlayCta);
     };
 
     const observer = new ResizeObserver((entries) => {
