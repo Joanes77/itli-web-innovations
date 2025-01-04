@@ -1,6 +1,12 @@
 import { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 
 export const MarketingSection = () => {
+  const { ref: sectionRef, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1
+  });
+
   useEffect(() => {
     const cardsContainer = document.querySelector(".cards");
     const cards = Array.from(document.querySelectorAll(".card"));
@@ -9,21 +15,18 @@ export const MarketingSection = () => {
     if (!cardsContainer || !overlay) return;
 
     const applyOverlayMask = (e: MouseEvent) => {
-      const overlayEl = e.currentTarget as HTMLElement;
+      const overlayEl = overlay as HTMLElement;
       const x = e.pageX - cardsContainer.getBoundingClientRect().left;
       const y = e.pageY - cardsContainer.getBoundingClientRect().top;
 
       overlayEl.style.setProperty("--opacity", "1");
       overlayEl.style.setProperty("--x", `${x}px`);
-      overlayEl.style.setProperty("--y", `${y}px`);
+      overlayEl.style.setProperty("--y", `${y}px}`);
     };
 
-    const createOverlayCta = (overlayCard: HTMLElement, ctaEl: Element) => {
-      const overlayCta = document.createElement("div");
-      overlayCta.classList.add("cta");
-      overlayCta.textContent = ctaEl.textContent;
-      overlayCta.setAttribute("aria-hidden", "true");
-      overlayCard.append(overlayCta);
+    const removeOverlayMask = () => {
+      const overlayEl = overlay as HTMLElement;
+      overlayEl.style.setProperty("--opacity", "0");
     };
 
     const observer = new ResizeObserver((entries) => {
@@ -48,20 +51,24 @@ export const MarketingSection = () => {
     };
 
     cards.forEach(initOverlayCard);
-    document.body.addEventListener("pointermove", applyOverlayMask as any);
+    cardsContainer.addEventListener("mousemove", applyOverlayMask);
+    cardsContainer.addEventListener("mouseleave", removeOverlayMask);
 
     return () => {
       observer.disconnect();
-      document.body.removeEventListener("pointermove", applyOverlayMask as any);
+      cardsContainer.removeEventListener("mousemove", applyOverlayMask);
+      cardsContainer.removeEventListener("mouseleave", removeOverlayMask);
     };
   }, []);
 
   return (
-    <main className="main flow min-h-screen bg-black/50 backdrop-blur-sm" id="marketing">
-      <h1 className="main__heading animate-fade-in">Seguimos con los precios de 2024. ¡Compra ahora!</h1>
+    <main ref={sectionRef} className="main flow min-h-screen bg-gradient-to-br from-black via-purple-900/20 to-black backdrop-blur-sm" id="marketing">
+      <h1 className={`main__heading transform transition-all duration-700 ${inView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+        Seguimos con los precios de 2024. ¡Compra ahora!
+      </h1>
       <div className="main__cards cards">
         <div className="cards__inner">
-          <div className="cards__card card animate-fade-in">
+          <div className={`cards__card card transform transition-all duration-700 delay-100 ${inView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
             <h2 className="card__heading">Básico</h2>
             <p className="card__price">$300.000</p>
             <ul role="list" className="card__bullets flow">
@@ -72,7 +79,7 @@ export const MarketingSection = () => {
             <a href="#basic" className="card__cta cta">¡Contrátalo!</a>
           </div>
 
-          <div className="cards__card card animate-fade-in delay-200">
+          <div className={`cards__card card transform transition-all duration-700 delay-200 ${inView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
             <h2 className="card__heading">Más Popular</h2>
             <p className="card__price">$600.000</p>
             <ul role="list" className="card__bullets flow">
@@ -83,7 +90,7 @@ export const MarketingSection = () => {
             <a href="#pro" className="card__cta cta">Actualizar a Pro</a>
           </div>
 
-          <div className="cards__card card animate-fade-in delay-300">
+          <div className={`cards__card card transform transition-all duration-700 delay-300 ${inView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
             <h2 className="card__heading">Premium</h2>
             <p className="card__price">$900.000</p>
             <ul role="list" className="card__bullets flow">

@@ -10,10 +10,11 @@ export const Navigation = () => {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              {/* Logo space */}
-              <div className="w-32 h-8 bg-white/10 rounded flex items-center justify-center text-white">
-                ITLI Logo
-              </div>
+              <img 
+                src="/lovable-uploads/dc416805-31b7-41c6-a97e-0d382a63b065.png" 
+                alt="ITLI Logo" 
+                className="w-12 h-12 object-contain"
+              />
             </div>
           </div>
           <div className="hidden md:block">
