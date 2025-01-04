@@ -3,7 +3,6 @@ import { useEffect } from "react";
 export const MarketingSection = () => {
   useEffect(() => {
     const cardsContainer = document.querySelector(".cards");
-    const cardsContainerInner = document.querySelector(".cards__inner");
     const cards = Array.from(document.querySelectorAll(".card"));
     const overlay = document.querySelector(".overlay");
 
@@ -58,11 +57,11 @@ export const MarketingSection = () => {
   }, []);
 
   return (
-    <main className="main flow" id="marketing">
-      <h1 className="main__heading">Seguimos con los precios de 2024. ¡Compra ahora!</h1>
+    <main className="main flow min-h-screen bg-black/50 backdrop-blur-sm" id="marketing">
+      <h1 className="main__heading animate-fade-in">Seguimos con los precios de 2024. ¡Compra ahora!</h1>
       <div className="main__cards cards">
         <div className="cards__inner">
-          <div className="cards__card card">
+          <div className="cards__card card animate-fade-in">
             <h2 className="card__heading">Básico</h2>
             <p className="card__price">$300.000</p>
             <ul role="list" className="card__bullets flow">
@@ -73,7 +72,7 @@ export const MarketingSection = () => {
             <a href="#basic" className="card__cta cta">¡Contrátalo!</a>
           </div>
 
-          <div className="cards__card card">
+          <div className="cards__card card animate-fade-in delay-200">
             <h2 className="card__heading">Más Popular</h2>
             <p className="card__price">$600.000</p>
             <ul role="list" className="card__bullets flow">
@@ -84,7 +83,7 @@ export const MarketingSection = () => {
             <a href="#pro" className="card__cta cta">Actualizar a Pro</a>
           </div>
 
-          <div className="cards__card card">
+          <div className="cards__card card animate-fade-in delay-300">
             <h2 className="card__heading">Premium</h2>
             <p className="card__price">$900.000</p>
             <ul role="list" className="card__bullets flow">
