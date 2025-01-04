@@ -1,15 +1,12 @@
 import { Navigation } from "@/components/Navigation";
 import { MarketingSection } from "@/components/MarketingSection";
-import { ArrowRight, Code, Megaphone } from "lucide-react";
+import { WebDevDashboard } from "@/components/WebDevDashboard";
+import { MarketingDashboard } from "@/components/MarketingDashboard";
+import { ArrowRight } from "lucide-react";
 import { useInView } from "react-intersection-observer";
 
 const Index = () => {
   const { ref: heroRef, inView: heroInView } = useInView({
-    triggerOnce: true,
-    threshold: 0.1
-  });
-
-  const { ref: servicesRef, inView: servicesInView } = useInView({
     triggerOnce: true,
     threshold: 0.1
   });
@@ -60,60 +57,18 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Services Section */}
-      <section 
-        ref={servicesRef}
-        id="servicios" 
-        className="relative min-h-screen py-20 px-4"
-      >
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.1),rgba(255,255,255,0))]" />
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 animate-fade-in">
-            Nuestros Servicios
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="p-8 rounded-lg bg-black/50 backdrop-blur-sm hover:bg-black/60 transition-all hover:scale-105 transform animate-fade-in delay-200">
-              <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
-                <Code className="h-8 w-8 text-primary" />
-              </div>
-              <h3 className="text-2xl font-semibold mb-4">Desarrollo Web</h3>
-              <p className="text-gray-400 mb-4">
-                Creamos sitios web profesionales y personalizados para tu negocio o empresa,
-                con diseño responsive y optimizado para motores de búsqueda.
-              </p>
-              <a
-                href="#contacto"
-                className="inline-flex items-center text-primary hover:text-primary/80 transition-colors"
-              >
-                Saber más <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
-            </div>
-            <div className="p-8 rounded-lg bg-black/50 backdrop-blur-sm hover:bg-black/60 transition-all hover:scale-105 transform animate-fade-in delay-300">
-              <div className="w-16 h-16 bg-secondary/10 rounded-lg flex items-center justify-center mb-6">
-                <Megaphone className="h-8 w-8 text-secondary" />
-              </div>
-              <h3 className="text-2xl font-semibold mb-4">Marketing Digital</h3>
-              <p className="text-gray-400 mb-4">
-                Potenciamos tu presencia online con estrategias de marketing digital
-                efectivas para aumentar tus ventas y alcance.
-              </p>
-              <a
-                href="#marketing"
-                className="inline-flex items-center text-secondary hover:text-secondary/80 transition-colors"
-              >
-                Ver planes <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Services Dashboards */}
+      <div id="servicios">
+        <WebDevDashboard />
+        <MarketingDashboard />
+      </div>
 
       {/* Marketing Section */}
       <MarketingSection />
 
       {/* Contact Section */}
       <section id="contacto" className="min-h-screen py-20 px-4 bg-gradient-to-t from-black via-purple-900/20 to-black">
-        <div className="max-w-7xl mx-auto text-center animate-fade-in">
+        <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-8">Contáctanos</h2>
           <p className="text-gray-400 mb-8 text-xl">
             ¿Listo para llevar tu negocio al siguiente nivel? Contáctanos hoy mismo.
