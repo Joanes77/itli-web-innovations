@@ -2,6 +2,7 @@ import { Navigation } from "@/components/Navigation";
 import { MarketingSection } from "@/components/MarketingSection";
 import { WebDevDashboard } from "@/components/WebDevDashboard";
 import { MarketingDashboard } from "@/components/MarketingDashboard";
+import { Footer } from "@/components/Footer";
 import { ArrowRight } from "lucide-react";
 import { useInView } from "react-intersection-observer";
 
@@ -58,13 +59,15 @@ const Index = () => {
       </section>
 
       {/* Services Dashboards */}
-      <div id="servicios">
+      <div id="servicios" className="bg-black">
         <WebDevDashboard />
         <MarketingDashboard />
       </div>
 
       {/* Marketing Section */}
-      <MarketingSection />
+      <div className="bg-black">
+        <MarketingSection />
+      </div>
 
       {/* Contact Section */}
       <section id="contacto" className="min-h-screen py-20 px-4 bg-gradient-to-t from-black via-purple-900/20 to-black">
@@ -82,6 +85,9 @@ const Index = () => {
           </a>
         </div>
       </section>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };

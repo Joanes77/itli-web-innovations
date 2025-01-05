@@ -4,7 +4,8 @@ import { useInView } from "react-intersection-observer";
 export const MarketingSection = () => {
   const { ref: sectionRef, inView } = useInView({
     triggerOnce: true,
-    threshold: 0.1
+    threshold: 0.1,
+    rootMargin: '50px'  // Preload elements before they're visible
   });
 
   useEffect(() => {
@@ -70,8 +71,14 @@ export const MarketingSection = () => {
   }, []);
 
   return (
-    <main ref={sectionRef} className="main flow min-h-screen bg-gradient-to-br from-black via-purple-900/20 to-black backdrop-blur-sm" id="marketing">
-      <h1 className={`main__heading transform transition-all duration-700 ${inView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+    <main 
+      ref={sectionRef} 
+      className="main flow min-h-screen bg-gradient-to-br from-black via-purple-900/20 to-black backdrop-blur-sm" 
+      id="marketing"
+      style={{ willChange: 'transform' }}
+    >
+      <h1 className={`main__heading transform transition-all duration-500 ${inView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+          style={{ willChange: 'transform, opacity' }}>
         Seguimos con los precios de 2024. ¡Compra ahora!
       </h1>
       <div className="main__cards cards">
