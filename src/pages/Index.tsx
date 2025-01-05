@@ -88,7 +88,7 @@ const Index = () => {
           </p>
           <a
             href="mailto:contacto@itli.com"
-            className="inline-flex items-center px-8 py-4 bg-primary text-white rounded-full hover:bg-primary/90 transition-all hover:scale-105 transform"
+            className="inline-flex items-center px-8 py-4 bg-[#4A148C] text-white rounded-full hover:bg-[#6A1B9A] transition-all hover:scale-105 transform hover:shadow-lg hover:shadow-purple-500/20"
           >
             Enviar mensaje
             <ArrowRight className="ml-2 h-5 w-5" />
