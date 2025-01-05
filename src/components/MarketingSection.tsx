@@ -38,17 +38,28 @@ export const MarketingSection = () => {
       overlayCard.append(overlayCta);
     };
 
+    let resizeTimeout: NodeJS.Timeout;
     const observer = new ResizeObserver((entries) => {
-      entries.forEach((entry) => {
-        const cardIndex = cards.indexOf(entry.target as HTMLElement);
-        const width = entry.borderBoxSize[0].inlineSize;
-        const height = entry.borderBoxSize[0].blockSize;
-
-        if (cardIndex >= 0 && overlay.children[cardIndex]) {
-          (overlay.children[cardIndex] as HTMLElement).style.width = `${width}px`;
-          (overlay.children[cardIndex] as HTMLElement).style.height = `${height}px`;
-        }
-      });
+      // Clear any existing timeout
+      clearTimeout(resizeTimeout);
+      
+      // Set a new timeout to batch resize operations
+      resizeTimeout = setTimeout(() => {
+        entries.forEach((entry) => {
+          const cardIndex = cards.indexOf(entry.target as HTMLElement);
+          if (cardIndex >= 0 && overlay.children[cardIndex]) {
+            const width = entry.contentBoxSize[0]?.inlineSize || entry.contentRect.width;
+            const height = entry.contentBoxSize[0]?.blockSize || entry.contentRect.height;
+            
+            requestAnimationFrame(() => {
+              if (overlay.children[cardIndex]) {
+                (overlay.children[cardIndex] as HTMLElement).style.width = `${width}px`;
+                (overlay.children[cardIndex] as HTMLElement).style.height = `${height}px`;
+              }
+            });
+          }
+        });
+      }, 100); // Debounce resize operations by 100ms
     });
 
     const initOverlayCard = (cardEl: Element) => {
@@ -64,6 +75,7 @@ export const MarketingSection = () => {
     cardsContainer.addEventListener("mouseleave", removeOverlayMask);
 
     return () => {
+      clearTimeout(resizeTimeout);
       observer.disconnect();
       cardsContainer.removeEventListener("mousemove", applyOverlayMask);
       cardsContainer.removeEventListener("mouseleave", removeOverlayMask);
