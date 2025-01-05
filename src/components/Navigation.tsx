@@ -1,71 +1,97 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const isMobile = useIsMobile();
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  const handleLogoClick = () => {
-    window.location.href = '#inicio';
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <nav className="fixed w-full bg-black/90 backdrop-blur-sm z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          <div className="flex items-center">
-            <div className="flex-shrink-0 cursor-pointer" onClick={handleLogoClick}>
-              <img 
-                src="/lovable-uploads/dc416805-31b7-41c6-a97e-0d382a63b065.png" 
-                alt="ITLI Logo" 
-                className="w-16 h-16 object-contain hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-          </div>
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-6">
-              <a href="#inicio" className="text-gray-300 hover:text-white px-4 py-3 rounded-md text-lg font-medium tracking-wide transition-colors duration-300">
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? "bg-black/80 backdrop-blur-sm" : "bg-transparent"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
+          <a href="#inicio" className="flex items-center space-x-2">
+            <img
+              src="/lovable-uploads/f815e504-8122-4618-b5fd-de922f17dcef.png"
+              alt="ITLI Logo"
+              className="h-12 w-12 object-contain"
+            />
+            <span className="text-xl tracking-wider font-['Orbitron']" translate="no">ITLI</span>
+          </a>
+
+          {isMobile ? (
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 text-white"
+            >
+              {isOpen ? <X /> : <Menu />}
+            </button>
+          ) : (
+            <div className="flex space-x-8 text-lg tracking-wide">
+              <a href="#inicio" className="text-white hover:text-primary transition-colors">
                 Inicio
               </a>
-              <a href="#servicios" className="text-gray-300 hover:text-white px-4 py-3 rounded-md text-lg font-medium tracking-wide transition-colors duration-300">
+              <a href="#servicios" className="text-white hover:text-primary transition-colors">
                 Servicios
               </a>
-              <a href="#marketing" className="text-gray-300 hover:text-white px-4 py-3 rounded-md text-lg font-medium tracking-wide transition-colors duration-300">
-                Marketing
+              <a href="#marketing" className="text-white hover:text-primary transition-colors">
+                Planes
               </a>
-              <a href="#contacto" className="text-gray-300 hover:text-white px-4 py-3 rounded-md text-lg font-medium tracking-wide transition-colors duration-300">
+              <a href="#contacto" className="text-white hover:text-primary transition-colors">
+                Contacto
+              </a>
+            </div>
+          )}
+        </div>
+
+        {isMobile && isOpen && (
+          <div className="bg-black/95 backdrop-blur-sm">
+            <div className="flex flex-col space-y-4 py-4">
+              <a
+                href="#inicio"
+                className="text-white hover:text-primary transition-colors px-4 py-2"
+                onClick={() => setIsOpen(false)}
+              >
+                Inicio
+              </a>
+              <a
+                href="#servicios"
+                className="text-white hover:text-primary transition-colors px-4 py-2"
+                onClick={() => setIsOpen(false)}
+              >
+                Servicios
+              </a>
+              <a
+                href="#marketing"
+                className="text-white hover:text-primary transition-colors px-4 py-2"
+                onClick={() => setIsOpen(false)}
+              >
+                Planes
+              </a>
+              <a
+                href="#contacto"
+                className="text-white hover:text-primary transition-colors px-4 py-2"
+                onClick={() => setIsOpen(false)}
+              >
                 Contacto
               </a>
             </div>
           </div>
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none"
-            >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
-          </div>
-        </div>
+        )}
       </div>
-
-      {isOpen && (
-        <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a href="#inicio" className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-              Inicio
-            </a>
-            <a href="#servicios" className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-              Servicios
-            </a>
-            <a href="#marketing" className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-              Marketing
-            </a>
-            <a href="#contacto" className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-              Contacto
-            </a>
-          </div>
-        </div>
-      )}
     </nav>
   );
 };
