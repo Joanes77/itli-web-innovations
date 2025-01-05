@@ -73,22 +73,19 @@ export const MarketingSection = () => {
   return (
     <main 
       ref={sectionRef} 
-      className="main flow min-h-screen bg-[#0d2f5a]" 
+      className="main flow min-h-screen bg-gradient-to-br from-black via-blue-900/20 to-black backdrop-blur-sm" 
       id="marketing"
       style={{ 
-        willChange: 'transform, opacity',
+        willChange: 'transform',
         transform: 'translateZ(0)',
-        backfaceVisibility: 'hidden',
-        width: '100%',
-        margin: 0,
-        padding: '4rem 1rem'
+        backfaceVisibility: 'hidden'
       }}
     >
       <h1 
-        className={`main__heading transform transition-all duration-1000 ${
+        className={`main__heading transform transition-all duration-700 ${
           inView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
         }`}
-        style={{ willChange: 'transform, opacity' }}
+        style={{ willChange: 'transform, opacity', backfaceVisibility: 'hidden' }}
       >
         Seguimos con los precios de 2024. ¡Compra ahora!
       </h1>
@@ -96,9 +93,10 @@ export const MarketingSection = () => {
         <div className="cards__inner">
           {/* Card 1 */}
           <div 
-            className={`cards__card card transform transition-all duration-1000 ${
+            className={`cards__card card transform transition-all duration-700 ${
               inView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`}
+            style={{ willChange: 'transform, opacity', backfaceVisibility: 'hidden' }}
           >
             <h2 className="card__heading">Básico</h2>
             <p className="card__price">$300.000</p>
@@ -107,14 +105,15 @@ export const MarketingSection = () => {
               <li>Integración: Meta Business, Facebook, Instagram y WhatsApp</li>
               <li>Mantenimiento Sitio web **Servicio de mantenimiento exclusivo para nuestros clientes**</li>
             </ul>
-            <a href="#basic" className="card__cta cta bg-[#0d2f5a]/90 hover:bg-[#1a4980] hover:shadow-[0_0_15px_rgba(26,73,128,0.5)] transition-all duration-300 md:hidden">¡Contrátalo!</a>
+            <a href="#basic" className="card__cta cta hover:bg-blue-600 transition-colors duration-300">¡Contrátalo!</a>
           </div>
 
           {/* Card 2 */}
           <div 
-            className={`cards__card card transform transition-all duration-1000 delay-100 ${
+            className={`cards__card card transform transition-all duration-700 delay-100 ${
               inView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`}
+            style={{ willChange: 'transform, opacity', backfaceVisibility: 'hidden' }}
           >
             <h2 className="card__heading">Más Popular</h2>
             <p className="card__price">$600.000</p>
@@ -123,14 +122,15 @@ export const MarketingSection = () => {
               <li>Soporte prioritario por correo electrónico</li>
               <li>Acceso exclusivo a sesiones de Q&A en vivo</li>
             </ul>
-            <a href="#pro" className="card__cta cta bg-[#0d2f5a]/90 hover:bg-[#1a4980] hover:shadow-[0_0_15px_rgba(26,73,128,0.5)] transition-all duration-300 md:hidden">Actualizar a Pro</a>
+            <a href="#pro" className="card__cta cta hover:bg-blue-600 transition-colors duration-300">Actualizar a Pro</a>
           </div>
 
           {/* Card 3 */}
           <div 
-            className={`cards__card card transform transition-all duration-1000 delay-200 ${
+            className={`cards__card card transform transition-all duration-700 delay-200 ${
               inView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`}
+            style={{ willChange: 'transform, opacity', backfaceVisibility: 'hidden' }}
           >
             <h2 className="card__heading">Premium</h2>
             <p className="card__price">$900.000</p>
@@ -140,7 +140,7 @@ export const MarketingSection = () => {
               <li>Sesión de coaching virtual mensual</li>
               <li>Contenido exclusivo y acceso anticipado a nuevas funciones</li>
             </ul>
-            <a href="#ultimate" className="card__cta cta bg-[#0d2f5a]/90 hover:bg-[#1a4980] hover:shadow-[0_0_15px_rgba(26,73,128,0.5)] transition-all duration-300 md:hidden">Ir a Ultimate</a>
+            <a href="#ultimate" className="card__cta cta hover:bg-blue-600 transition-colors duration-300">Ir a Ultimate</a>
           </div>
         </div>
         <div className="overlay cards__inner"></div>
