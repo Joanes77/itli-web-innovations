@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 
 export const MarketingSection = () => {
-  const { ref: sectionRef, inView } = useInView({
+  const { ref: sectionRef } = useInView({
     triggerOnce: true,
     threshold: 0.1,
     rootMargin: '100px'
@@ -96,22 +96,13 @@ export const MarketingSection = () => {
         padding: '4rem 1rem'
       }}
     >
-      <h1 
-        className={`main__heading transform transition-all duration-1000 ${
-          inView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-        }`}
-        style={{ willChange: 'transform, opacity' }}
-      >
+      <h1 className="main__heading">
         Seguimos con los precios de 2024. ¡Compra ahora!
       </h1>
       <div className="main__cards cards">
         <div className="cards__inner">
           {/* Card 1 */}
-          <div 
-            className={`cards__card card transform transition-all duration-1000 ${
-              inView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-            }`}
-          >
+          <div className={`cards__card card`}>
             <h2 className="card__heading">Básico</h2>
             <p className="card__price">$300.000</p>
             <ul role="list" className="card__bullets flow">
@@ -123,11 +114,7 @@ export const MarketingSection = () => {
           </div>
 
           {/* Card 2 */}
-          <div 
-            className={`cards__card card transform transition-all duration-1000 delay-100 ${
-              inView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-            }`}
-          >
+          <div className={`cards__card card`}>
             <h2 className="card__heading">Más Popular</h2>
             <p className="card__price">$600.000</p>
             <ul role="list" className="card__bullets flow">
@@ -139,11 +126,7 @@ export const MarketingSection = () => {
           </div>
 
           {/* Card 3 */}
-          <div 
-            className={`cards__card card transform transition-all duration-1000 delay-200 ${
-              inView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-            }`}
-          >
+          <div className={`cards__card card`}>
             <h2 className="card__heading">Premium</h2>
             <p className="card__price">$900.000</p>
             <ul role="list" className="card__bullets flow">

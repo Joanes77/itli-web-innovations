@@ -17,7 +17,7 @@ const Index = () => {
       <div className="fixed inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]" />
       <Navigation />
       
-      {/* Hero Section */}
+      {/* Hero Section - Keeping animations here */}
       <section 
         ref={heroRef}
         id="inicio" 
@@ -50,10 +50,7 @@ const Index = () => {
           </p>
           <a
             href="#servicios"
-            className={`inline-flex items-center px-8 py-4 bg-[#1A1F2C] text-white rounded-full hover-scale color-transition ${
-              heroInView ? 'animate-scale-in' : 'opacity-0'
-            }`}
-            style={{ animationDelay: '0.2s' }}
+            className="inline-flex items-center px-8 py-4 bg-[#1A1F2C] text-white rounded-full hover-scale color-transition"
           >
             Descubre nuestros servicios
             <ArrowRight className="ml-2 h-5 w-5" />
@@ -61,20 +58,20 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Services Dashboards */}
+      {/* Services Dashboards - Removed entrance animations */}
       <div id="servicios" className="bg-black">
         <WebDevDashboard />
         <MarketingDashboard />
       </div>
 
-      {/* Marketing Section */}
+      {/* Marketing Section - Removed entrance animations */}
       <div className="bg-black">
         <MarketingSection />
       </div>
 
-      {/* Contact Section */}
+      {/* Contact Section - Removed entrance animations */}
       <section id="contacto" className="min-h-screen py-20 px-4 bg-gradient-to-t from-black via-purple-900/20 to-black">
-        <div className="max-w-7xl mx-auto text-center stagger-animation">
+        <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-8">Contáctanos</h2>
           <p className="text-gray-400 mb-8 text-xl">
             ¿Listo para llevar tu negocio al siguiente nivel? Contáctanos hoy mismo.
