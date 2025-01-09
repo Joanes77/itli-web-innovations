@@ -68,6 +68,7 @@
   max-width: 75rem;
   padding: 3em 1.5em;
   margin: 0 auto;
+  background: linear-gradient(to bottom right, #000000, rgba(30, 58, 138, 0.2), #000000);
 }
 
 .main__heading {
